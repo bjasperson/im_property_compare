@@ -13,7 +13,33 @@ async function init() {
 
 const data = await d3.csv("https://benjasperson.com/im_property_compare/data.csv");
 
-console.log(data);  	      
+console.log(data);  
+
+const margin = 50;
+var x = d3.scaleLog().domain([10,150]).range([0,200]);
+var y = d3.scaleLog().domain([10,150]).range([200, 0]);
+
+d3.select('svg').append('g')
+    .attr('transform', 'translate('+margin+','+margin+')')
+    .selectAll('circle').data(data).enter().append('circle')
+    .attr('cx',function(d) { return x(parseInt(d.c44_fcc)) } )
+    .attr('cy',function(d) { return y(parseInt(d.surface_energy_110_fcc)) } )
+    .attr('r',function(d) { return 2.0 } );
+
+
+d3.select('svg').append('g')
+    .attr('transform','translate('+margin+','+margin+')')
+    .call(d3.axisLeft(y)
+               	.tickValues([10,20,50,100])
+               	.tickFormat(d3.format("~s")));
+
+d3.select('svg').append('g')
+    .attr('transform','translate('+margin+','+(200+margin)+')')
+    .call(d3.axisBottom(x)
+               	.tickValues([10,20,50,100])
+               	.tickFormat(d3.format("~s")));
+
+
 
 }
 </script>
