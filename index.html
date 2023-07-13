@@ -1,7 +1,21 @@
-<html>
+<!doctype html>
+<html lang="en">
 <h1>Hello!</h1>
 <script src='https://d3js.org/d3.v5.min.js'></script>
+<body onload='init()'>
+<svg width=300 height=300>
+</svg>
 
+<script>
+async function init() {
+
+
+
+const data = await d3.csv("https://benjasperson.com/im_property_compare/data.csv");
+
+console.log(data);  	      
+
+}
 </script>
 </body>
 </html>
