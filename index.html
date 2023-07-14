@@ -16,14 +16,14 @@ console.log(data);
 const margin = 50;
 const width = 200;
 const height = 200;
-var x = d3.scaleLinear().domain([0,4]).range([0,width]);
+var x = d3.scaleLinear().domain([0,2]).range([0,width]);
 var y = d3.scaleLinear().domain([0,2500]).range([height, 0]);
 
 d3.select('svg').append('g')
     .attr('transform', 'translate('+margin+','+margin+')')
     .selectAll('circle').data(data).enter().append('circle')
-    .attr('cx',function(d) { return x(parseInt(d.Surface_energy_110_fcc)) } )
-    .attr('cy',function(d) { return y(parseInt(d.C44_fcc)) } )
+    .attr('cx',function(d) { return x(parseInt(d.surface_energy_110_fcc_avg)) } )
+    .attr('cy',function(d) { return y(parseInt(d.c44_fcc_avg)) } )
     .attr('r',function(d) { return 2.0 } );
 
 

@@ -3,21 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-def main():
-    df_orig = pd.read_csv("./data.csv")
-    df_orig = df_orig[df_orig['species'] != "user01"]
-    df_orig = df_orig[df_orig['model_type'] != "['Morse', 'SigmoidalSmoothed']"]
-    df = df_orig.copy()
-    df = calc_mean(df)
-
-    name = "LJ_ElliottAkerson_2015_Universal__MO_959249795837_003"
-    df_updated = df_orig.copy()
-    df_updated = df_updated[df_updated['model'] != name]
-    df_updated = calc_mean(df_updated)
-
-    return df, df_updated
-
-
 def extract_data():
     c44_result = requests.post("https://query.openkim.org/api",data={'database': 'data', 'query': '{"property-id":"tag:staff@noreply.openkim.org,2014-05-21:property/elastic-constants-isothermal-cubic-crystal-npt",\r\n"meta.runner.driver.short-id":"TD_011862047401_006",\r\n"short-name.source-value":"fcc"}', 'fields': '{"c44.source-value":1, "meta.subject.kimcode":1,\r\n"species.source-value":1,\r\n"short-name.source-value":1}', 'flat': 'on'}).json()
     se_result = requests.post("https://query.openkim.org/api",data={'query': '{"property-id":"tag:staff@noreply.openkim.org,2014-05-21:property/surface-energy-cubic-crystal-npt",\r\n"meta.runner.driver.short-id":"TD_955413365818_004",\r\n"short-name.source-value":"fcc"}', 'fields': '{"surface-energy.source-value":1,\r\n"meta.subject.kimcode":1,\r\n"species.source-value":1,\r\n"short-name.source-value":1,\r\n"miller-indices.source-value":1}', 'database': 'data', 'flat': 'on'}).json()
@@ -39,9 +24,22 @@ def extract_data():
     # remove known bad data
     df = df[df['species'] != "user01"]
     df = df[df['model_type'] != "['Morse', 'SigmoidalSmoothed']"]
-    df.to_csv("./data.csv")
-    
     return df
+
+
+def add_averages(df_orig):
+    #df_orig = pd.read_csv("./data.csv")
+    #df_orig = df_orig[df_orig['species'] != "user01"]
+    #df_orig = df_orig[df_orig['model_type'] != "['Morse', 'SigmoidalSmoothed']"]
+    df = df_orig.copy()
+    df = calc_mean(df)
+
+    name = "LJ_ElliottAkerson_2015_Universal__MO_959249795837_003"
+    df_updated = df_orig.copy()
+    df_updated = df_updated[df_updated['model'] != name]
+    df_updated = calc_mean(df_updated)
+
+    return df, df_updated
 
 def calc_mean(df):
     df_mean = df.groupby(['species'])[['c44_fcc','surface_energy_110_fcc']].mean().copy()
@@ -51,13 +49,19 @@ def calc_mean(df):
     df = df.merge(df_mean,'left',on='species')
     return df
 
+def merge_dfs():
+
+
+    return
+
 def plot(x,y):
     plt.scatter(x,y)
     plt.show()
 
 
-if __name__ == "__main__":
-    df, df_updated = main()
+def main():
+    df = extract_data()
+    df, df_updated = add_averages(df)
 
     sns.relplot(data = df,
                 x = 'surface_energy_110_fcc_avg',
@@ -82,3 +86,11 @@ if __name__ == "__main__":
         y = 'c44_fcc',
         hue = 'species')
     plt.show()
+
+    df.to_csv("./data.csv")
+
+    return
+
+
+if __name__ == "__main__":
+    main()
