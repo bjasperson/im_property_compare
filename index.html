@@ -1,6 +1,21 @@
 <!doctype html>
 <html lang="en">
-<h1>Hello!</h1>
+<h1>Exploring correlations between interatomic model predicted properties</h1>
+
+<p> 
+Shared repositories for molecular simulation data presents an opportunity to 
+reinvent material science and mechanics research. Researchers can now probe numerous 
+models and their results with ease.
+<p>
+However, it is important to understand the nuances that define the data that we leverage. 
+As an example, we explore the observed correlations between elastic constants 
+(C44 in particular) and surface energy.
+</p>
+<p> 
+Below, we see average values across species from OpenKIM, a database of interatomic 
+models and test results.
+</p>
+
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <body onload='init()'>
 <svg width=300 height=300>
@@ -41,5 +56,17 @@ d3.select('svg').append('g')
 
 }
 </script>
+
+<p>
+Let’s expand the data points to show the underlying results that were aggregated.
+</p>
+<p>
+Hover over each data point to see the model details 
+</p>
+
+<svg width=300 height=300>
+</svg>
+
+
 </body>
 </html>
