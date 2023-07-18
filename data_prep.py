@@ -88,6 +88,7 @@ def main():
     plt.show()
 
     df.to_csv("./data.csv")
+    df_updated.to_csv("./data_filtered.csv")
 
     return
 
