@@ -6,6 +6,8 @@
 <script type="text/javascript" src="./scripts.js"></script>
 </head>
 
+<style> rect {fill: none; stroke: black;} </style>
+
 <body>
 <h1>Exploring correlations between interatomic model predicted properties</h1>
 
@@ -23,7 +25,7 @@ Below, we see average values across species from OpenKIM, a database of interato
 models and test results.
 </p>
 
-<svg width=300 height=300 id="svg1">
+<svg width=500 height=500 id="svg1">
     <script>
         svg1();
     </script>
@@ -36,28 +38,28 @@ Let’s expand the data points to show the underlying results that were aggregat
 Hover over each data point to see the model details 
 </p>
 
-<svg width=300 height=300 id="svg2">
+<svg width=500 height=500 id="svg2">
     <script>
         svg2();
     </script>
 </svg>
 
 <p>
-If we remove the data points which came from one model, we see a different 
+If we remove the data points which came from one model and result in large values, we see a different 
 relationship between C44 and Average Surface Energy.
 </p>
 
-<svg width=300 height=300 id="svg3">
+<svg width=500 height=500 id="svg3">
     <script>
         svg3();
     </script>
 </svg>
 
 <p>
-Expanded back out, allow the user to probe model details with popups 
-(will change to log)
+Explore the underlying data by hovering over each datapoint, to see the model details 
+(note the use of a log/log plot to facilitate data visualization).
 </p>
-<svg width=300 height=300 id="svg4">
+<svg width=500 height=500 id="svg4">
     <script>
         svg4();
     </script>
