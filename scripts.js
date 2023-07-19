@@ -2,6 +2,7 @@
 
 async function svg1() {
     // const data = await d3.csv("https://benjasperson.com/im_property_compare/data.csv");
+    d3.select("#svg1").selectAll("*").remove();
     const data = await d3.csv("./data.csv");
 
     console.log(data);  
@@ -35,6 +36,8 @@ async function svg1() {
 
 async function svg2() {
     //const data = await d3.csv("https://benjasperson.com/im_property_compare/data.csv");
+    d3.select("#svg1").selectAll("*").remove();
+
     const data = await d3.csv("./data.csv");
     console.log(data);  
 
@@ -44,7 +47,7 @@ async function svg2() {
     var x = d3.scaleLinear().domain([0,2]).range([0,width]);
     var y = d3.scaleLinear().domain([0,2500]).range([height, 0]);
 
-    d3.select('#svg2').append('g')
+    d3.select('#svg1').append('g')
         .attr('transform', 'translate('+margin+','+margin+')')
         .selectAll('circle').data(data).enter().append('circle')
         .attr('cx',function(d) { return x(parseFloat(d.surface_energy_110_fcc)) } )
@@ -54,21 +57,21 @@ async function svg2() {
         .text(function(d) { return d.model } );
 
     // add annotation
-    d3.select('#svg2').append('g')
+    d3.select('#svg1').append('g')
         .attr('transform', 'translate('+margin+','+margin+')')
         .append("text")
         .text("These results use the same")
         .attr("x",x(0.9))
         .attr("y",y(900.0));
 
-    d3.select('#svg2').append('g')
+    d3.select('#svg1').append('g')
         .attr('transform', 'translate('+margin+','+margin+')')
         .append("text")
         .text("interatomic model")
         .attr("x",x(0.9))
         .attr("y",y(800.00));
 
-    d3.select('#svg2').append('g')
+    d3.select('#svg1').append('g')
         .attr('transform', 'translate('+margin+','+margin+')')
         .selectAll('rect').data(data).enter().append('rect')
         .attr("width",300)
@@ -76,13 +79,13 @@ async function svg2() {
         .attr("x",x(0.5))
         .attr("y",y(2600));
 
-    d3.select('#svg2').append('g')
+    d3.select('#svg1').append('g')
         .attr('transform','translate('+margin+','+margin+')')
         .call(d3.axisLeft(y));
                     //.tickValues([10,20,50,100])
                     //.tickFormat(d3.format("~s")));
 
-    d3.select('#svg2').append('g')
+    d3.select('#svg1').append('g')
         .attr('transform','translate('+margin+','+(height+margin)+')')
         .call(d3.axisBottom(x));
                     //.tickValues([10,20,50,100])
