@@ -20,6 +20,7 @@ def extract_data():
 
     df = pd.merge(df_c44, df_surface_energy, on=['model','species','structure'])
     df['model_type'] = [i.split("__")[0].split("_")[:-3] for i in df['model']]
+    df['model_base_type'] = [i[0] for i in df['model_type']]
 
     # remove known bad data
     df = df[df['species'] != "user01"]

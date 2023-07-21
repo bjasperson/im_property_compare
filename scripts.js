@@ -167,6 +167,8 @@ async function svg3() {
     const height = 400;
     var x = d3.scaleLog().domain([.0005,2]).range([0,width]);
     var y = d3.scaleLog().domain([1,600]).range([height, 0]);
+    //var x = d3.scaleLinear().domain([.0005,2]).range([0,width]);
+    //var y = d3.scaleLinear().domain([1,600]).range([height, 0]);
 
     d3.select('#svg3').append('g')
         .attr('transform', 'translate('+margin+','+margin+')')
@@ -186,7 +188,87 @@ async function svg3() {
 
     d3.select('#svg3').append('g')
         .attr('transform','translate('+margin+','+(height+margin)+')')
-        .call(d3.axisBottom(x))
+        .call(d3.axisBottom(x));
                     //.tickValues([.001,.01,.1,1]);
                     //.tickFormat(d3.format("~s")));
+
+    function filterDataSpecies(data, species) {
+        var model_type_button = document.getElementById('modelTypeButton').value
+        //console.log(model_type_button)
+        return data.filter(function(d) { return d.species == species && d.model_base_type == model_type_button})
+    }
+
+    function filterDataModel(data, model_type) {
+        var species_button = document.getElementById('speciesButton').value
+        return data.filter(function(d) { return d.model_base_type == model_type && d.species == species_button })
+    }
+    
+    // event listener
+    //d3.select('#speciesButton').on("input", filterData()) //this isn't right
+    
+    // I think my issue is with the keys:
+    // https://bost.ocks.org/mike/join/
+    // https://bost.ocks.org/mike/constancy/
+    function addPoints(data_in) {
+        console.log(data_in)
+        d3.select('#svg3')
+            .selectAll("circle").data(data_in).enter().append("circle")
+            //.attr('transform', 'translate('+margin+','+margin+')')            
+            .attr('cx',function(d) { return x(parseFloat(d.surface_energy_110_fcc)) } )
+            .attr('cy',function(d) { return y(parseFloat(d.c44_fcc)) } )
+            .attr('r',function(d) { return 3.0 } )
+            .attr('transform', 'translate('+margin+','+margin+')')
+            .append('title')
+            .text(function(d) { return d.model } )
+
+    }
+    
+    function removePoints(data_in) {
+        // console.log(data_in)
+        d3.select('#svg3').selectAll("circle")
+            //.data(data_in)
+            //.exit()
+            .remove();
+    }
+        
+    function updatePoints(data_in) {
+        //console.log(data_in)
+        d3.select('#svg3').selectAll("circle")
+            .data(data_in)
+            .transition()
+            //.attr('transform', 'translate('+margin+','+margin+')')
+        }
+    
+    //initial selection
+    //var speciesSelected = document.querySelector('input[name="speciesButton"]:checked');
+    //var selectedData = filterData(data, speciesSelected.value);
+    //addPoints(selectedData);
+    
+    // groupSelector.onchange = function(d) {
+    //     var group = d.target.value;
+    //     var selectedData = filteredData(data, group);
+        
+    //     updatePoints(selectedData);
+    //     addPoints(selectedData);
+    //     removePoints(selectedData);
+        
+    //     };
+
+    d3.select('#speciesButton').on("change", function(d) {
+            var selectedSpecies = this.value;
+            var selectedData = filterDataSpecies(data, selectedSpecies);
+            //updatePoints(selectedData);
+            removePoints(selectedData);
+            addPoints(selectedData);
+            });
+
+    d3.select('#modelTypeButton').on("change", function(d) {
+            var selectedModelType = this.value;
+            var selectedData = filterDataModel(data, selectedModelType);
+            //updatePoints(selectedData);
+            removePoints(selectedData);
+            addPoints(selectedData);
+            });
 }
+
+
