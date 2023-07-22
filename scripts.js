@@ -192,6 +192,20 @@ async function svg3() {
                     //.tickValues([.001,.01,.1,1]);
                     //.tickFormat(d3.format("~s")));
 
+    // add labels; ref: https://tomordonez.com/d3-bar-chart-title-and-labels/
+    d3.select('#svg3').append('text')
+        .attr('transform','translate('+(width/2 + margin)+','+(height+margin+40)+')')
+        .style("text-anchor","middle")
+        .text("Surface Energy (110 FCC)");
+    d3.select('#svg3').append('text')
+        .attr("transform", "rotate(-90)")
+        .attr("x", -(height/2+25))
+        .attr("y",12)
+        .style("text-anchor","middle")
+        //.attr('transform','translate('+(width/2 + margin)+','+(height+margin+40)+')')
+        .style("text-anchor","middle")
+        .text("C44 (FCC)");
+
     function filterDataSpecies(data, species) {
         var model_type_button = document.getElementById('modelTypeButton').value
         //console.log(model_type_button)
@@ -203,8 +217,6 @@ async function svg3() {
         return data.filter(function(d) { return d.model_base_type == model_type && d.species == species_button })
     }
     
-    // event listener
-    //d3.select('#speciesButton').on("input", filterData()) //this isn't right
     
     // I think my issue is with the keys:
     // https://bost.ocks.org/mike/join/
