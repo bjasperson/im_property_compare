@@ -18,7 +18,7 @@ async function svg1a() {
         .selectAll('circle').data(data).enter().append('circle')
         .attr('cx',function(d) { return x(parseFloat(d.surface_energy_110_fcc_avg)) } )
         .attr('cy',function(d) { return y(parseFloat(d.c44_fcc_avg)) } )
-        .attr('r',function(d) { return 3.0 } );
+        .attr('r',function(d) { return 4.0 } );
 
 
     d3.select('#svg1').append('g')
@@ -47,18 +47,6 @@ async function svg1b() {
     var x = d3.scaleLinear().domain([0,2]).range([0,width]);
     var y = d3.scaleLinear().domain([0,2500]).range([height, 0]);
 
-    d3.select('#svg1').append('g')
-        .attr('transform', 'translate('+margin+','+margin+')')
-        .selectAll('circle').data(data).enter().append('circle')
-        .attr('cx',function(d) { return x(parseFloat(d.surface_energy_110_fcc)) } )
-        .attr('cy',function(d) { return y(parseFloat(d.c44_fcc)) } )
-        .attr('r',function(d) { return 3.0 } )
-        .append('title')
-        .text(function(d) { return d.model } );
-
-    // https://d3-annotation.susielu.com/#types
-    //const annotation_type = d3.annotationCalloutCircle
-
     const annotations = [{
         note: {
           label: "These results all use the same interatomic model",
@@ -80,6 +68,19 @@ async function svg1b() {
     d3.select("#svg1").append("g")
         .attr("class", "annotation-group")
         .call(makeAnnotations)
+
+    d3.select('#svg1').append('g')
+        .attr('transform', 'translate('+margin+','+margin+')')
+        .selectAll('circle').data(data).enter().append('circle')
+        .attr('cx',function(d) { return x(parseFloat(d.surface_energy_110_fcc)) } )
+        .attr('cy',function(d) { return y(parseFloat(d.c44_fcc)) } )
+        .attr('r',function(d) { return 4.0 } )
+        .append('title')
+        .text(function(d) { return d.model } );
+
+    // https://d3-annotation.susielu.com/#types
+    //const annotation_type = d3.annotationCalloutCircle
+
 
     d3.select('#svg1').append('g')
         .attr('transform','translate('+margin+','+margin+')')
