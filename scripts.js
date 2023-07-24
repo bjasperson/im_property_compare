@@ -56,28 +56,30 @@ async function svg1b() {
         .append('title')
         .text(function(d) { return d.model } );
 
-    // add annotation
-    d3.select('#svg1').append('g')
-        .attr('transform', 'translate('+margin+','+margin+')')
-        .append("text")
-        .text("These results use the same")
-        .attr("x",x(0.9))
-        .attr("y",y(900.0));
+    // https://d3-annotation.susielu.com/#types
+    //const annotation_type = d3.annotationCalloutCircle
 
-    d3.select('#svg1').append('g')
-        .attr('transform', 'translate('+margin+','+margin+')')
-        .append("text")
-        .text("interatomic model")
-        .attr("x",x(0.9))
-        .attr("y",y(800.00));
+    const annotations = [{
+        note: {
+          label: "These results all use the same interatomic model",
+          title: "Note the Model Name"
+        },
+        type: d3.annotationCalloutCircle,
+        x: x(1.4)+margin, 
+        y: y(2000)+margin, 
+        dx: 10,
+        dy: 150,
+        subject: {
+          radius: 125
+        }
+      }]
 
-    d3.select('#svg1').append('g')
-        .attr('transform', 'translate('+margin+','+margin+')')
-        .selectAll('rect').data(data).enter().append('rect')
-        .attr("width",300)
-        .attr("height",300)
-        .attr("x",x(0.5))
-        .attr("y",y(2600));
+    const makeAnnotations = d3.annotation()
+        .annotations(annotations)
+
+    d3.select("#svg1").append("g")
+        .attr("class", "annotation-group")
+        .call(makeAnnotations)
 
     d3.select('#svg1').append('g')
         .attr('transform','translate('+margin+','+margin+')')
@@ -109,7 +111,31 @@ async function svg2a() {
         .selectAll('circle').data(data).enter().append('circle')
         .attr('cx',function(d) { return x(parseFloat(d.surface_energy_110_fcc_avg)) } )
         .attr('cy',function(d) { return y(parseFloat(d.c44_fcc_avg)) } )
-        .attr('r',function(d) { return 3.0 } );
+        .attr('r',function(d) { return 3.0 } )
+        .append('title')
+        .text(function(d) { return d.species } );
+
+    const annotations = [{
+        note: {
+            label: "Watch Pt move from here...",
+            title: "For example"
+        },
+        //type: d3.annotationCalloutCircle,
+        x: x(.19)+margin, 
+        y: y(180)+margin, 
+        dx: 5,
+        dy: 15,
+        subject: {
+            radius: 10
+        }
+    }]
+
+    const makeAnnotations = d3.annotation()
+        .annotations(annotations)
+
+    d3.select("#svg2").append("g")
+        .attr("class", "annotation-group")
+        .call(makeAnnotations)
 
 
     d3.select('#svg2').append('g')
@@ -123,6 +149,8 @@ async function svg2a() {
         .call(d3.axisBottom(x));
                     //.tickValues([10,20,50,100])
                     //.tickFormat(d3.format("~s")));
+
+
 }
 
 async function svg2b() {
@@ -141,7 +169,31 @@ async function svg2b() {
         .selectAll('circle').data(data).enter().append('circle')
         .attr('cx',function(d) { return x(parseFloat(d.surface_energy_110_fcc_avg)) } )
         .attr('cy',function(d) { return y(parseFloat(d.c44_fcc_avg)) } )
-        .attr('r',function(d) { return 3.0 } );
+        .attr('r',function(d) { return 3.0 } )
+        .append('title')
+        .text(function(d) { return d.species } );
+
+    const annotations = [{
+        note: {
+            label: "to here"
+            //title: "For example"
+        },
+        type: d3.annotationLayout,
+        x: x(.12)+margin, 
+        y: y(80)+margin, 
+        dx: 50,
+        dy: 15
+        //subject: {
+        //    radius: 10
+        //}
+    }]
+
+    const makeAnnotations = d3.annotation()
+        .annotations(annotations)
+
+    d3.select("#svg2").append("g")
+        //.attr("class", "annotation-group")
+        .call(makeAnnotations)
 
 
     d3.select('#svg2').append('g')
