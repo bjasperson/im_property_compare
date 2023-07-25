@@ -32,6 +32,20 @@ async function svg1a() {
         .call(d3.axisBottom(x));
                     //.tickValues([10,20,50,100])
                     //.tickFormat(d3.format("~s")));
+    
+    // add labels; ref: https://tomordonez.com/d3-bar-chart-title-and-labels/
+    d3.select('#svg1').append('text')
+        .attr('transform','translate('+(width/2 + margin)+','+(height+margin+40)+')')
+        .style("text-anchor","middle")
+        .text("Surface Energy (110 FCC)");
+    d3.select('#svg1').append('text')
+        .attr("transform", "rotate(-90)")
+        .attr("x", -(height/2+25))
+        .attr("y",12)
+        .style("text-anchor","middle")
+        //.attr('transform','translate('+(width/2 + margin)+','+(height+margin+40)+')')
+        .style("text-anchor","middle")
+        .text("C44 (FCC)");
 }
 
 async function svg1b() {
@@ -93,6 +107,20 @@ async function svg1b() {
         .call(d3.axisBottom(x));
                     //.tickValues([10,20,50,100])
                     //.tickFormat(d3.format("~s")));
+
+    // add labels; ref: https://tomordonez.com/d3-bar-chart-title-and-labels/
+    d3.select('#svg1').append('text')
+        .attr('transform','translate('+(width/2 + margin)+','+(height+margin+40)+')')
+        .style("text-anchor","middle")
+        .text("Surface Energy (110 FCC)");
+    d3.select('#svg1').append('text')
+        .attr("transform", "rotate(-90)")
+        .attr("x", -(height/2+25))
+        .attr("y",12)
+        .style("text-anchor","middle")
+        //.attr('transform','translate('+(width/2 + margin)+','+(height+margin+40)+')')
+        .style("text-anchor","middle")
+        .text("C44 (FCC)");
 }
 
 
@@ -112,7 +140,7 @@ async function svg2a() {
         .selectAll('circle').data(data).enter().append('circle')
         .attr('cx',function(d) { return x(parseFloat(d.surface_energy_110_fcc_avg)) } )
         .attr('cy',function(d) { return y(parseFloat(d.c44_fcc_avg)) } )
-        .attr('r',function(d) { return 3.0 } )
+        .attr('r',function(d) { return 4.0 } )
         .append('title')
         .text(function(d) { return d.species } );
 
@@ -151,6 +179,20 @@ async function svg2a() {
                     //.tickValues([10,20,50,100])
                     //.tickFormat(d3.format("~s")));
 
+    // add labels; ref: https://tomordonez.com/d3-bar-chart-title-and-labels/
+    d3.select('#svg2').append('text')
+       .attr('transform','translate('+(width/2 + margin)+','+(height+margin+40)+')')
+       .style("text-anchor","middle")
+       .text("Surface Energy (110 FCC)");
+   d3.select('#svg2').append('text')
+       .attr("transform", "rotate(-90)")
+       .attr("x", -(height/2+25))
+       .attr("y",12)
+       .style("text-anchor","middle")
+       //.attr('transform','translate('+(width/2 + margin)+','+(height+margin+40)+')')
+       .style("text-anchor","middle")
+       .text("C44 (FCC)");
+
 
 }
 
@@ -170,7 +212,7 @@ async function svg2b() {
         .selectAll('circle').data(data).enter().append('circle')
         .attr('cx',function(d) { return x(parseFloat(d.surface_energy_110_fcc_avg)) } )
         .attr('cy',function(d) { return y(parseFloat(d.c44_fcc_avg)) } )
-        .attr('r',function(d) { return 3.0 } )
+        .attr('r',function(d) { return 4.0 } )
         .append('title')
         .text(function(d) { return d.species } );
 
@@ -208,6 +250,20 @@ async function svg2b() {
         .call(d3.axisBottom(x));
                     //.tickValues([10,20,50,100])
                     //.tickFormat(d3.format("~s")));
+    
+    // add labels; ref: https://tomordonez.com/d3-bar-chart-title-and-labels/
+    d3.select('#svg2').append('text')
+        .attr('transform','translate('+(width/2 + margin)+','+(height+margin+40)+')')
+        .style("text-anchor","middle")
+        .text("Surface Energy (110 FCC)");
+    d3.select('#svg2').append('text')
+        .attr("transform", "rotate(-90)")
+        .attr("x", -(height/2+25))
+        .attr("y",12)
+        .style("text-anchor","middle")
+        //.attr('transform','translate('+(width/2 + margin)+','+(height+margin+40)+')')
+        .style("text-anchor","middle")
+        .text("C44 (FCC)");
 }
 
 
