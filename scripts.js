@@ -10,8 +10,8 @@ async function svg1a() {
     const margin = 50;
     const width = 400;
     const height = 400;
-    var x = d3.scaleLinear().domain([0,2]).range([0,width]);
-    var y = d3.scaleLinear().domain([0,2500]).range([height, 0]);
+    var x = d3.scaleLog().domain([0.001,2]).range([0,width]);
+    var y = d3.scaleLog().domain([1,2500]).range([height, 0]);
 
     d3.select('#svg1').append('g')
         .attr('transform', 'translate('+margin+','+margin+')')
@@ -33,7 +33,7 @@ async function svg1a() {
                     //.tickValues([10,20,50,100])
                     //.tickFormat(d3.format("~s")));
     
-    // add labels; ref: https://tomordonez.com/d3-bar-chart-title-and-labels/
+    // add axis labels; ref: https://tomordonez.com/d3-bar-chart-title-and-labels/
     d3.select('#svg1').append('text')
         .attr('transform','translate('+(width/2 + margin)+','+(height+margin+40)+')')
         .style("text-anchor","middle")
@@ -58,8 +58,8 @@ async function svg1b() {
     const margin = 50;
     const width = 400;
     const height = 400;
-    var x = d3.scaleLinear().domain([0,2]).range([0,width]);
-    var y = d3.scaleLinear().domain([0,2500]).range([height, 0]);
+    var x = d3.scaleLog().domain([0.001,2]).range([0,width]);
+    var y = d3.scaleLog().domain([1,2500]).range([height, 0]);
 
     const annotations = [{
         note: {
@@ -67,12 +67,14 @@ async function svg1b() {
           title: "Note the Model Name"
         },
         type: d3.annotationCalloutCircle,
-        x: x(1.4)+margin, 
-        y: y(2000)+margin, 
-        dx: 10,
-        dy: 150,
+        x: x(0.8)+margin, 
+        y: y(1100)+margin, 
+        dx: -200,
+        dy: 0,
+        wrap: 400,
+        padding: 10,
         subject: {
-          radius: 125
+          radius: 75
         }
       }]
 
@@ -132,8 +134,8 @@ async function svg2a() {
     const margin = 50;
     const width = 400;
     const height = 400;
-    var x = d3.scaleLinear().domain([0,0.25]).range([0,width]);
-    var y = d3.scaleLinear().domain([0,250]).range([height, 0]);
+    var x = d3.scaleLog().domain([0.001,2]).range([0,width]);
+    var y = d3.scaleLog().domain([1,2500]).range([height, 0]);
 
     d3.select('#svg2').append('g')
         .attr('transform', 'translate('+margin+','+margin+')')
@@ -146,14 +148,14 @@ async function svg2a() {
 
     const annotations = [{
         note: {
-            label: "Watch Pt move from here...",
+            label: "Watch Rh move from here...",
             title: "For example"
         },
         //type: d3.annotationCalloutCircle,
-        x: x(.19)+margin, 
-        y: y(180)+margin, 
-        dx: 5,
-        dy: 15,
+        x: x(.4)+margin, 
+        y: y(650)+margin, 
+        dx: -50,
+        dy: -15,
         subject: {
             radius: 10
         }
@@ -204,8 +206,8 @@ async function svg2b() {
     const margin = 50;
     const width = 400;
     const height = 400;
-    var x = d3.scaleLinear().domain([0,0.25]).range([0,width]);
-    var y = d3.scaleLinear().domain([0,250]).range([height, 0]);
+    var x = d3.scaleLog().domain([0.001,2]).range([0,width]);
+    var y = d3.scaleLog().domain([1,2500]).range([height, 0]);
 
     d3.select('#svg2').append('g')
         .attr('transform', 'translate('+margin+','+margin+')')
@@ -218,14 +220,13 @@ async function svg2b() {
 
     const annotations = [{
         note: {
-            label: "to here"
-            //title: "For example"
+            label: "to here!"
         },
         type: d3.annotationLayout,
         x: x(.12)+margin, 
-        y: y(80)+margin, 
-        dx: 50,
-        dy: 15
+        y: y(220)+margin, 
+        dx: -50,
+        dy: -15
         //subject: {
         //    radius: 10
         //}
@@ -274,7 +275,7 @@ async function svg3() {
     const margin = 50;
     const width = 400;
     const height = 400;
-    var x = d3.scaleLog().domain([.0005,2]).range([0,width]);
+    var x = d3.scaleLog().domain([.001,2]).range([0,width]);
     var y = d3.scaleLog().domain([1,600]).range([height, 0]);
     //var x = d3.scaleLinear().domain([.0005,2]).range([0,width]);
     //var y = d3.scaleLinear().domain([1,600]).range([height, 0]);
