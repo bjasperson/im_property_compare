@@ -392,7 +392,7 @@ async function svg3() {
             //.attr('transform', 'translate('+margin+','+margin+')')            
             .attr('cx',function(d) { return x(parseFloat(d.surface_energy_110_fcc)) } )
             .attr('cy',function(d) { return y(parseFloat(d.c44_fcc)) } )
-            .attr('r',function(d) { return 3.0 } )
+            .attr('r',function(d) { return 4.0 } )
             .attr('transform', 'translate('+margin+','+margin+')')
             .append('title')
             .text(function(d) { return d.model } )
