@@ -175,11 +175,12 @@ async function svg2a() {
             label: "Watch Rh move from here...",
             title: "For example"
         },
-        //type: d3.annotationCalloutCircle,
+        type: d3.annotationCallout,
         x: x(.4)+margin, 
         y: y(650)+margin, 
         dx: -50,
         dy: -15,
+        connector: { end:"arrow" },
         subject: {
             radius: 10
         }
@@ -246,11 +247,12 @@ async function svg2b() {
         note: {
             label: "to here!"
         },
-        type: d3.annotationLayout,
+        type: d3.annotationCallout,
         x: x(.12)+margin, 
         y: y(220)+margin, 
         dx: -50,
-        dy: -15
+        dy: -15,
+        connector: { end:"arrow" }
         //subject: {
         //    radius: 10
         //}
