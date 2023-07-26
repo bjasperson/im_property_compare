@@ -13,6 +13,30 @@ async function svg1a() {
     var x = d3.scaleLog().domain([0.001,2]).range([0,width]);
     var y = d3.scaleLog().domain([1,2500]).range([height, 0]);
 
+    const annotations = [{
+        note: {
+          label: "These are the aggregated results. Let's look at the raw data...",
+          //title: ""
+        },
+        // type: d3.annotationCalloutCircle,
+        x: x(.05)+margin, 
+        y: y(1100)+margin, 
+        dx: -10,
+        dy: 0,
+        wrap: 400,
+        padding: 10,
+        subject: {
+          radius: 75
+        }
+      }]
+
+    const makeAnnotations = d3.annotation()
+        .annotations(annotations)
+
+    d3.select("#svg1").append("g")
+        .attr("class", "annotation-group")
+        .call(makeAnnotations)
+
     d3.select('#svg1').append('g')
         .attr('transform', 'translate('+margin+','+margin+')')
         .selectAll('circle').data(data).enter().append('circle')
