@@ -343,14 +343,42 @@ async function svg3() {
         .text("C44 (FCC)");
 
     function filterDataSpecies(data, species) {
-        var model_type_button = document.getElementById('modelTypeButton').value
+        var model_type_button = document.getElementById('modelTypeButton').value;
+        if (species == 'all') {
+            if (model_type_button == 'all') {
+                var output = data;
+            } else {
+                var output = data.filter(function(d) {return d.model_base_type == model_type_button});
+            }
+        } else {
+            if (model_type_button == 'all') {
+                var output = data.filter(function(d) { return d.species == species })    
+            } else {
+                var output = data.filter(function(d) { return d.species == species && d.model_base_type == model_type_button})
+            }
+            
+        }
         //console.log(model_type_button)
-        return data.filter(function(d) { return d.species == species && d.model_base_type == model_type_button})
+        return output
     }
+    
 
     function filterDataModel(data, model_type) {
         var species_button = document.getElementById('speciesButton').value
-        return data.filter(function(d) { return d.model_base_type == model_type && d.species == species_button })
+        if (model_type == 'all') {
+            if (species_button == 'all') {
+                var output = data;
+            } else {
+                output = data.filter(function(d) { return d.model_base_type == model_type && d.species == species_button })
+            }
+        } else {
+            if (species_button == 'all') {
+                output = data.filter(function(d) { return d.model_base_type == model_type })
+            } else {
+                output = data.filter(function(d) { return d.model_base_type == model_type && d.species == species_button })
+            }
+        }
+        return output
     }
     
     
@@ -418,5 +446,3 @@ async function svg3() {
             addPoints(selectedData);
             });
 }
-
-
