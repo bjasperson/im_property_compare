@@ -15,7 +15,7 @@ async function svg1a() {
 
     const annotations = [{
         note: {
-          label: "These are the aggregated results. Let's look at the raw data...",
+          label: "These are the aggregated results (hover over each to see the species name). Let's look at the raw data...",
           //title: ""
         },
         // type: d3.annotationCalloutCircle,
@@ -89,8 +89,8 @@ async function svg1b() {
 
     const annotations = [{
         note: {
-          label: "These results all use the same interatomic model",
-          title: "Note the Model Name"
+          label: "Note that these results all use the same interatomic model",
+          title: "Hover over each to see the Model Name"
         },
         type: d3.annotationCalloutCircle,
         x: x(0.8)+margin, 
