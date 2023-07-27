@@ -22,52 +22,60 @@
     (note the use of a log/log plot to facilitate data visualization). You can look at all the data 
     or select a specific species and look at the influence of model type. 
 </p>
+
+<section>
+    <select name="speciesButton" id="speciesButton">
+        <!-- <option value="Ac">Ac</option> -->
+        <option value="all" selected >all</option>
+        <option value="Ag" >Ag</option>
+        <option value="Al">Al</option>
+        <option value="Ar">Ar</option>
+        <option value="Au">Au</option>
+        <option value="Ca">Ca</option>
+        <!-- <option value="Ce">Ce</option> -->
+        <option value="Cu">Cu</option> 
+        <!-- <option value="Ir">Ir</option>  -->
+        <option value="Kr">Kr</option>
+        <option value="Ne">Ne</option>
+        <option value="Ni">Ni</option>
+        <option value="Pb">Pb</option>
+        <option value="Pd">Pd</option>
+        <option value="Pt">Pt</option>
+        <option value="Rh">Rh</option>
+        <option value="Sr">Sr</option>
+        <!-- <option value="Th">Th</option> -->
+        <option value="Xe">Xe</option>
+        <!-- <option value="Yb">Yb</option> -->
+    </select>
+    
+    <select name="model_type" id="modelTypeButton">
+        <option value="all" selected >all</option>
+        <option value="LJ" >LJ </option>
+        <option value="EAM" >EAM</option>
+        <option value="EMT" >EMT </option>
+        <option value="MEAM" >MEAM </option>
+        <option value="Morse" >Morse </option>
+        <option value="Sim" >Sim </option>
+        <option value="SNAP" >SNAP </option>
+        <option value="Tersoff" >Teresoff </option>
+    
+    </select>
+    
+    </section>
+
+
 <svg width=500 height=500 id="svg3">
     <script>
         svg3();
     </script>
 </svg>
 
-<form action='./filtering.html' method='get'>
+
+<section>
+    <form action='./filtering.html' method='get'>
     <input type='submit' value='Previous Page'/>
 </form>
-
-<select name="speciesButton" id="speciesButton">
-    <!-- <option value="Ac">Ac</option> -->
-    <option value="all" selected >all</option>
-    <option value="Ag" >Ag</option>
-    <option value="Al">Al</option>
-    <option value="Ar">Ar</option>
-    <option value="Au">Au</option>
-    <option value="Ca">Ca</option>
-    <!-- <option value="Ce">Ce</option> -->
-    <option value="Cu">Cu</option> 
-    <!-- <option value="Ir">Ir</option>  -->
-    <option value="Kr">Kr</option>
-    <option value="Ne">Ne</option>
-    <option value="Ni">Ni</option>
-    <option value="Pb">Pb</option>
-    <option value="Pd">Pd</option>
-    <option value="Pt">Pt</option>
-    <option value="Rh">Rh</option>
-    <option value="Sr">Sr</option>
-    <!-- <option value="Th">Th</option> -->
-    <option value="Xe">Xe</option>
-    <!-- <option value="Yb">Yb</option> -->
-</select>
-
-<select name="model_type" id="modelTypeButton">
-    <option value="all" selected >all</option>
-    <option value="LJ" >LJ </option>
-    <option value="EAM" >EAM</option>
-    <option value="EMT" >EMT </option>
-    <option value="MEAM" >MEAM </option>
-    <option value="Morse" >Morse </option>
-    <option value="Sim" >Sim </option>
-    <option value="SNAP" >SNAP </option>
-    <option value="Tersoff" >Teresoff </option>
-
-</select>
+</section>
   
 </body>
 </html>
