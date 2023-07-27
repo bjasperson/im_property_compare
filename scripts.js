@@ -89,8 +89,8 @@ async function svg1b() {
 
     const annotations = [{
         note: {
-          label: "Note that these results all use the same interatomic model",
-          title: "Hover over each to see the Model Name"
+          label: "Note these all use the same interatomic model!",
+          title: "Hover to see the Model Name"
         },
         type: d3.annotationCalloutCircle,
         x: x(0.8)+margin, 
